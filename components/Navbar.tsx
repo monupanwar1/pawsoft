@@ -15,7 +15,7 @@ export default function Header() {
   const activePathName = usePathname();
 
   return (
-    <header className="fixed border-b w-full flex items-center justify-between backdrop-blur-sm h-14 px-4 bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
+    <header className="fixed border-b w-full flex items-center justify-between backdrop-blur-sm h-14 px-4">
       {/* Logo */}
       <Link
         className="font-bold focus:outline-none flex items-center gap-2"

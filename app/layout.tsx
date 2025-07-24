@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import { Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
+import Footer from '@/components/Footer';
 
 const inter = Inter({
   variable: '--font-sans',
@@ -39,6 +40,7 @@ export default function RootLayout({
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {children}
           </main>
+          <Footer/>
         </ThemeProvider>
       </body>
     </html>
