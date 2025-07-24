@@ -28,10 +28,10 @@ export default function Header() {
             <li
               key={route.path}
               className={cn(
-                ' hover:font-medium transition flex items-center relative ',
+                ' hover:text-neutral-950 transition flex items-center relative ',
                 activePathName === route.path
-                  ? 'text-neutral-900'
-                  : 'text-primary',
+                  ? 'text-neutral-950'
+                  : 'text-neutral-700',
               )}
             >
               <Link className="focus:outline-none" href={route.path}>
