@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
-import { Inter, Geist_Mono } from 'next/font/google';
-import './globals.css';
 import Navbar from '@/components/Navbar';
+import { ThemeProvider } from '@/components/theme-provider';
+import type { Metadata } from 'next';
+import { Geist_Mono, Inter } from 'next/font/google';
+import './globals.css';
 
 const inter = Inter({
   variable: '--font-sans',
@@ -28,10 +29,17 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}
       >
-        <Navbar />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          {children}
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
