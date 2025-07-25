@@ -1,9 +1,10 @@
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { ThemeProvider } from '@/components/theme-provider';
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
-import Footer from '@/components/Footer';
 
 const inter = Inter({
   variable: '--font-sans',
@@ -26,13 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en suppressHydrationWarning">
       <body
-        className={`${inter.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}
+        className={cn(
+          `min-h-screen bg-background text-foreground`,
+          inter.variable,
+          geistMono.variable,
+        )}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
@@ -40,7 +45,7 @@ export default function RootLayout({
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {children}
           </main>
-          <Footer/>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
