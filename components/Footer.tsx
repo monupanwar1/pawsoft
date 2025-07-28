@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t w-full flex items-center justify-between mx-auto h-14 px-4 text-sm">
+    <footer className="z-50 border-t w-full flex items-center justify-between mx-auto h-14 px-4 text-sm">
       {/* Logo */}
       <h1 className="font-bold flex items-center gap-2">
         <FaDog className="text-blue-500 text-xl" />
