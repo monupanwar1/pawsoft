@@ -3,63 +3,84 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { PetEssentials } from '@/lib/types';
+import { FormEvent } from 'react';
 
 type PetFormProps = {
-  actionType: 'add' | 'edit';
+  formData: PetEssentials;
+  onChange: <T extends keyof PetEssentials>(
+    name: T,
+    value: PetEssentials[T],
+  ) => void;
+  actionType: 'add' | 'edit' | 'delete';
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 };
 
-type FormData = {
-  name: string;
-  ownerName: string;
-  imageUrl: string;
-  age: number;
-  notes: string;
-};
-
-export default function PetForm({ actionType }: PetFormProps) {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    ownerName: '',
-    imageUrl: '',
-    age: 0,
-    notes: '',
-  });
-  
-  const handleAdd=()=>{
-    setFormData(formData)
-  }
+export default function PetForm({
+  formData,
+  onChange,
+  actionType,
+  onSubmit,
+}: PetFormProps) {
+  if (actionType === 'delete') return null;
 
   return (
-    <form className="flex flex-col space-y-3">
+    <form onSubmit={onSubmit} className="space-y-4">
       <div className="space-y-1">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" value={formData.name} />
+        <Input
+          name="name"
+          type="text"
+          value={formData.name}
+          onChange={(e) => onChange('name', e.target.value)}
+          required
+        />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="ownerName">Owner Name</Label>
-        <Input id="ownerName" name="ownerName" value={formData.ownerName} />
+        <Input
+          name="ownerName"
+          value={formData.ownerName}
+          onChange={(e) => onChange('ownerName', e.target.value)}
+          required
+        />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="imageUrl">Image URL</Label>
-        <Input id="imageUrl" name="imageUrl" value={formData.imageUrl} />
+        <Input
+          name="imageUrl"
+          value={formData.imageUrl}
+          onChange={(e) => onChange('imageUrl', e.target.value)}
+        />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="age">Age</Label>
-        <Input id="age" name="age" type="number" value={formData.age} />
+        <Input
+          name="age"
+          type="number"
+          value={formData.age}
+          onChange={(e) => onChange('age', Number(e.target.value))}
+        />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="notes">Notes</Label>
-        <Textarea id="notes" name="notes" value={formData.notes} />
+        <Textarea
+          name="notes"
+          value={formData.notes ?? ''}
+          onChange={(e) => onChange('notes', e.target.value)}
+        />
       </div>
 
-      <button type="submit" className="bg-black text-white py-2 rounded">
-        {actionType === 'add' ? 'Add Pet' : 'Edit Pet'}
-      </button>
+      <div className="flex justify-end space-x-2 pt-4">
+        <Button type="submit" variant="default">
+          {actionType === 'edit' ? 'Update' : 'Save'}
+        </Button>
+      </div>
     </form>
   );
 }
