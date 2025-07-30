@@ -52,9 +52,9 @@ export default function PawSoftDashboard({ pets }: Props) {
                   >
                     <CardContent className="px-4 py-2 ">
                       <div className="flex items-center space-x-6">
-                        <Avatar className="w-14 h-14 rounded-full items-center object-cover">
+                        <Avatar className="w-16 h-16 overflow-hidden rounded-full border border-gray-200">
                           <AvatarImage src={pet.imageUrl} alt={pet.name} />
-                          <AvatarFallback className="bg-orange-100 text-orange-600">
+                          <AvatarFallback className="w-full h-full object-contain">
                             {pet.name.charAt(0)}
                           </AvatarFallback>
                         </Avatar>
@@ -91,15 +91,17 @@ export default function PawSoftDashboard({ pets }: Props) {
               <CardHeader className="pb-4">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex items-center space-x-4">
-                    <Avatar className="w-16 h-16">
+                    <Avatar className="w-16 h-16 overflow-hidden rounded-full border border-gray-200">
                       <AvatarImage
                         src={selectedPet.imageUrl}
                         alt={selectedPet.name}
+                        className="w-full h-full object-cover"
                       />
-                      <AvatarFallback className="bg-orange-100 text-orange-600 text-xl">
+                      <AvatarFallback className="flex items-center justify-center w-full h-full bg-orange-100 text-orange-600 text-xl font-semibold">
                         {selectedPet.name.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
+
                     <div>
                       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                         {selectedPet.name}
@@ -120,6 +122,7 @@ export default function PawSoftDashboard({ pets }: Props) {
                       onSubmit={async (data) => {
                         if (!selectedPet) return;
                         await editPet(selectedPet.id, data);
+                        setSelectedPet(null);
                       }}
                     >
                       Edit

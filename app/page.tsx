@@ -13,7 +13,7 @@ const images = [
 
 export default function Page() {
   return (
-    <main className=" pt-16 flex flex-col justify-center items-center">
+    <main className=" pt-16 flex flex-col justify-center items-center min-h-screen">
       <section className="flex flex-col items-center text-center py-16">
         <Badge className="bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-md shadow-md flex items-center gap-2 px-3 py-1 text-sm font-medium">
           <Sparkles className="text-lg" />
@@ -39,7 +39,7 @@ export default function Page() {
           />
         </div>
         <div className="w-full flex items-center justify-center ">
-          <WrapButton className="mt-10" href="/">
+          <WrapButton className="mt-10" href="/dashboard">
             <Globe className="animate-spin " />
             Get started
           </WrapButton>
