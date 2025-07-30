@@ -7,10 +7,9 @@ import { Input } from '@/components/ui/input';
 import { Pet } from '@/lib/types';
 import { useState } from 'react';
 
-
 type Props = {
   pets?: Pet[];
-}; 
+};
 
 export default function PawSoftDashboard({ pets }: Props) {
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
@@ -51,12 +50,14 @@ export default function PawSoftDashboard({ pets }: Props) {
                     className={`transition-shadow hover:bg-slate-50 dark:hover:bg-neutral-700 border-2 `}
                   >
                     <CardContent className="px-4 py-2 ">
-                      <div className="flex items-center space-x-6">
-                        <Avatar className="w-16 h-16 overflow-hidden rounded-full border border-gray-200">
-                          <AvatarImage src={pet.imageUrl} alt={pet.name} />
-                          <AvatarFallback className="w-full h-full object-contain">
-                            {pet.name.charAt(0)}
-                          </AvatarFallback>
+                      <div className="flex justify-center items-center space-x-6">
+                        <Avatar className="h-20 w-20 border ">
+                          <AvatarImage
+                            className="w-full h-full object-cover"
+                            src={pet.imageUrl}
+                            alt={pet.name}
+                          />
+                          <AvatarFallback>{pet.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-gray-900 dark:text-white ">
@@ -91,13 +92,13 @@ export default function PawSoftDashboard({ pets }: Props) {
               <CardHeader className="pb-4">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex items-center space-x-4">
-                    <Avatar className="w-16 h-16 overflow-hidden rounded-full border border-gray-200">
+                    <Avatar className="h-20 w-20 border">
                       <AvatarImage
                         src={selectedPet.imageUrl}
                         alt={selectedPet.name}
                         className="w-full h-full object-cover"
                       />
-                      <AvatarFallback className="flex items-center justify-center w-full h-full bg-orange-100 text-orange-600 text-xl font-semibold">
+                      <AvatarFallback>
                         {selectedPet.name.charAt(0)}
                       </AvatarFallback>
                     </Avatar>

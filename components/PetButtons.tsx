@@ -1,10 +1,8 @@
-// PetButton.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PlusIcon } from 'lucide-react';
 import { Button } from './ui/button';
-
 import {
   Dialog,
   DialogContent,
@@ -38,6 +36,18 @@ export default function PetButton({
     age: pet?.age || 0,
     notes: pet?.notes || '',
   });
+
+  useEffect(() => {
+    if (isFormOpen && pet && actionType === 'edit') {
+      setFormData({
+        name: pet.name || '',
+        ownerName: pet.ownerName || '',
+        imageUrl: pet.imageUrl || '',
+        age: pet.age || 0,
+        notes: pet.notes || '',
+      });
+    }
+  }, [isFormOpen, pet, actionType]);
 
   const handleChange = <T extends keyof PetEssentials>(
     name: T,
